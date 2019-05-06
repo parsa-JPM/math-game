@@ -1,7 +1,16 @@
 package ir.codefather.game.controllers.transfer_objects;
 
-public class UserTransfer{
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class UserTransfer {
+
+    @NotNull
+    @Size(max = 30)
     private String username;
+
+    @NotNull
+    @Size(min = 8,max = 30)
     private String password;
 
     public String getUsername() {

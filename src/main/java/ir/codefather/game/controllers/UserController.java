@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
+
 @Controller
 public class UserController {
 
@@ -27,20 +29,13 @@ public class UserController {
 
     @PostMapping("/user")
     @ResponseBody
-    public UserTransfer createUser(UserTransfer userTransfer) {
+    public UserTransfer createUser(@Valid UserTransfer userTransfer) {
+        //todo add validation to DTO
+        //todo generate token after registering
         User user = new User();
         user.setUsername(userTransfer.getUsername());
         user.setPassword(userTransfer.getPassword());
         userRepo.save(user);
         return userTransfer;
-    }
-
-
-    @PostMapping("/test")
-    @ResponseBody
-    public String test() {
-        User user = userRepo.findById(1).get();
-        DateTime dt=new DateTime(user.getCreatedAt());
-        return dt.dayOfWeek().getAsText();
     }
 }
