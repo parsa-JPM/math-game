@@ -3,7 +3,7 @@ package ir.codefather.game.controllers.transfer_objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class UserTransfer {
+public class UserRegisterDTO {
 
     @NotNull
     @Size(max = 30)
