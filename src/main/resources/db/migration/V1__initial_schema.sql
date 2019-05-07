@@ -1,7 +1,7 @@
 CREATE TABLE game.`user` (
 	id INT NOT NULL AUTO_INCREMENT,
 	username varchar(100) NOT NULL,
-	password varchar(30) NOT NULL,
+	password varchar(150) NOT NULL,
 	token varchar(150) NULL,
 	invited_by INT NULL,
 	device VARCHAR(50) NULL,

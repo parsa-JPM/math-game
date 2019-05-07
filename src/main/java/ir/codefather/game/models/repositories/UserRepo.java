@@ -9,5 +9,7 @@ import java.util.Optional;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Query("from User u where u.username=?1 and u.password=?2")
-    Optional<User> logn(String username, String password);
+    Optional<User> login(String username, String password);
+
+    Optional<User> findByUsername(String userName);
 }
