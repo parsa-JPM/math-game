@@ -2,13 +2,16 @@ package ir.codefather.game.controllers;
 
 import ir.codefather.game.ApiResponse;
 import ir.codefather.game.controllers.transfer_objects.UserRegisterDTO;
-import ir.codefather.game.filters.TokenFilter;
 import ir.codefather.game.helpers.SecurityHelper;
+import ir.codefather.game.helpers.Trans;
 import ir.codefather.game.models.User;
 import ir.codefather.game.models.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -33,8 +36,9 @@ public class UserController {
         String encryptPass = SecurityHelper.sha1(userTransfer.getPassword());
         Optional<User> userOptional = userRepo.login(userTransfer.getUsername(), encryptPass);
         if (userOptional.isEmpty())
-            //todo make localization
-            return new ApiResponse(null).setErrorCode(404).setErrorMessage("User not found");
+            return new ApiResponse(null)
+                    .setErrorCode(HttpStatus.NOT_FOUND.value())
+                    .setErrorMessage(Trans.get("users", "not-found"));
         return new ApiResponse(userOptional.orElseThrow());
     }
 
@@ -49,8 +53,9 @@ public class UserController {
     @ResponseBody
     public ApiResponse register(@Valid UserRegisterDTO userTransfer) {
         if (isUsernameExist(userTransfer.getUsername()))
-            //todo make localization
-            return new ApiResponse(null).setErrorCode(100).setErrorMessage("Username had been taken");
+            return new ApiResponse(null)
+                    .setErrorCode(HttpStatus.IM_USED.value())
+                    .setErrorMessage(Trans.get("users", "already-exist"));
         User user = new User();
         user.setUsername(userTransfer.getUsername());
         String encryptPass = SecurityHelper.sha1(userTransfer.getPassword());

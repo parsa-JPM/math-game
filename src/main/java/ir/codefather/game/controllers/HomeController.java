@@ -12,14 +12,6 @@ public class HomeController {
     public String index() {
         return "Hello World..!!!";
     }
-
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String test() {
-
-        return "Hellllll";
-    }
 }
 
 
