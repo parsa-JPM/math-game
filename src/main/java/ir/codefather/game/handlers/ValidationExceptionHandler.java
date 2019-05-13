@@ -21,6 +21,21 @@ public class ValidationExceptionHandler {
 
 
     /**
+     * @api {post} /*  Failed validation sample
+     * @apiGroup Validation
+     * @apiPosition 1
+     * @apiError ValidationFailed fail one of the parameters rule.
+     * @apiErrorExample ValidationFailed:
+     * HTTP/1.1 400 Bad Request
+    {
+    "errorCode": 400,
+    "errorMessage": "Validation Error",
+    "responseObject": {
+    "password": "size must be between 8 and 30"
+    }
+    }
+     */
+    /**
      * This method will handle validation failed messages and response will be appropriate for us
      *
      * @param ex it's threw exception

@@ -1,0 +1,11 @@
+{
+  "name": "Game",
+  "version": "0.1.0",
+  "description": "Server APIs",
+  "title": "Description of API docs",
+  "url": "http://194.5.177.38",
+  "order": [
+    "Validation",
+    "User"
+  ]
+}

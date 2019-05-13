@@ -1,6 +1,5 @@
 package ir.codefather.game.helpers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,6 @@ public class Trans {
     private static ResourceBundleMessageSource messageSource;
 
 
-    @Autowired
     public Trans(ResourceBundleMessageSource messageSource) {
         Trans.messageSource = messageSource;
     }

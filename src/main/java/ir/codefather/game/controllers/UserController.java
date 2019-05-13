@@ -25,10 +25,37 @@ public class UserController {
     UserRepo userRepo;
 
     /**
-     * Login user to the application
-     *
-     * @param userTransfer data that need to Authentication
-     * @return ApiResponse
+     * @api {post} /user/login   Login
+     * @apiName Login user
+     * @apiGroup User
+     * @apiParam {String}  Username username of user.
+     * @apiParam {String}  Password password of user.
+     * @apiSuccess {User} responseObject User full info.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": null,
+     * "errorMessage": null,
+     * "responseObject": {
+     * "id": 2,
+     * "username": "parsa",
+     * "password": "7C222FB2927D828AF22F592134E8932480637C0D",
+     * "token": "923df645-94b6-4d52-a953-55b515576b09",
+     * "invitedBy": 0,
+     * "device": null,
+     * "phoneNumber": null,
+     * "gender": null,
+     * "createdAt": "2019-05-07T13:39:58.000+0000"
+     * }
+     * }
+     * @apiError UserNotFound The Username or Password of the User was not match or correct.
+     * @apiErrorExample UserNotFound:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": 404,
+     * "errorMessage": "User not found",
+     * "responseObject": null
+     * }
      */
     @PostMapping("/login")
     @ResponseBody
@@ -44,10 +71,37 @@ public class UserController {
 
 
     /**
-     * Register new user
-     *
-     * @param userTransfer data that need to Authentication
-     * @return ApiResponse
+     * @api {post} /user/register   Register
+     * @apiName Register user
+     * @apiGroup User
+     * @apiParam {String}  Username username of user.
+     * @apiParam {String}  Password password of user.
+     * @apiSuccess {User} responseObject User full info.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": null,
+     * "errorMessage": null,
+     * "responseObject": {
+     * "id": 3,
+     * "username": "parsa",
+     * "password": "7C222FB2927D828AF22F592134E8932480637C0D",
+     * "token": "6b71215d-daea-4448-87d9-b9fbc1f8d843",
+     * "invitedBy": 0,
+     * "device": null,
+     * "phoneNumber": null,
+     * "gender": null,
+     * "createdAt": null
+     * }
+     * }
+     * @apiError UserNameTaken The Username already exist.
+     * @apiErrorExample UserNameTaken:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": 226,
+     * "errorMessage": "Username had been taken",
+     * "responseObject": null
+     * }
      */
     @PostMapping("/register")
     @ResponseBody
