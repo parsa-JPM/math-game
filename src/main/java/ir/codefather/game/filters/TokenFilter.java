@@ -1,7 +1,5 @@
 package ir.codefather.game.filters;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +7,7 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/user/*"})
 public class TokenFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 

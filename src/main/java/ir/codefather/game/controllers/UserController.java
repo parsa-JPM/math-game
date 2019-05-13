@@ -2,6 +2,7 @@ package ir.codefather.game.controllers;
 
 import ir.codefather.game.ApiResponse;
 import ir.codefather.game.controllers.transfer_objects.UserRegisterDTO;
+import ir.codefather.game.filters.TokenFilter;
 import ir.codefather.game.helpers.SecurityHelper;
 import ir.codefather.game.models.User;
 import ir.codefather.game.models.repositories.UserRepo;
