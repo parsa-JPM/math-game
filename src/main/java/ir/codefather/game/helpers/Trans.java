@@ -27,20 +27,8 @@ public class Trans {
      * @return String
      */
     public static String get(String fileBasename, String msgCode) {
-        setNewBasename(fileBasename);
         Locale locale = LocaleContextHolder.getLocale();
-        System.out.println(messageSource.getBasenameSet());
+        messageSource.addBasenames("lang/" + fileBasename);
         return messageSource.getMessage(msgCode, null, locale);
-    }
-
-
-    /**
-     * this give us multiple lang file option
-     *
-     * @param fileBasename name of file
-     */
-    private static void setNewBasename(String fileBasename) {
-        if (fileBasename != null && !messageSource.getBasenameSet().contains(fileBasename))
-            messageSource.addBasenames("lang/" + fileBasename);
     }
 }
