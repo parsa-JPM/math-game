@@ -35,16 +35,12 @@ public class TokenFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        //todo check usage of player object
-        //todo break statement to methods
         if (isNotAuthURL(request)) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
 
         String token = request.getParameter("token");
-        System.out.println(token);
-
 
         if(!checkTokenExist(token, response))
             return;

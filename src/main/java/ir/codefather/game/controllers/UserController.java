@@ -128,6 +128,7 @@ public class UserController {
     @PostMapping("/auth/info")
     @ResponseBody
     public ApiResponse getUserInfo() {
+        //todo add apidoc
         return new ApiResponse(player.getUser().orElse(null));
     }
 
