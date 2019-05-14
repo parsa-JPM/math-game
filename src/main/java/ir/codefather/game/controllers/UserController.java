@@ -2,6 +2,7 @@ package ir.codefather.game.controllers;
 
 import ir.codefather.game.ApiResponse;
 import ir.codefather.game.controllers.transfer_objects.UserRegisterDTO;
+import ir.codefather.game.helpers.Player;
 import ir.codefather.game.helpers.SecurityHelper;
 import ir.codefather.game.helpers.Trans;
 import ir.codefather.game.models.User;
@@ -23,6 +24,10 @@ public class UserController {
 
     @Autowired
     UserRepo userRepo;
+
+
+    @Autowired
+    Player player;
 
     /**
      * @api {post} /user/login   Login
@@ -119,6 +124,12 @@ public class UserController {
         return new ApiResponse(user);
     }
 
+
+    @PostMapping("/auth/info")
+    @ResponseBody
+    public ApiResponse getUserInfo() {
+        return new ApiResponse(player.getUser().orElse(null));
+    }
 
     /**
      * Check user name already exists
