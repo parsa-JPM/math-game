@@ -125,10 +125,41 @@ public class UserController {
     }
 
 
+    /**
+     * @api {post} /user/auth/info   Get user info
+     * @apiName User info
+     * @apiGroup User
+     * @apiParam {String}  Token token of specific user.
+     * @apiSuccess {User} responseObject User full info.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": null,
+     * "errorMessage": null,
+     * "responseObject": {
+     * "id": 3,
+     * "username": "parsa",
+     * "password": "7C222FB2927D828AF22F592134E8932480637C0D",
+     * "token": "6b71215d-daea-4448-87d9-b9fbc1f8d843",
+     * "invitedBy": 0,
+     * "device": null,
+     * "phoneNumber": null,
+     * "gender": null,
+     * "createdAt": null
+     * }
+     * }
+     * @apiError TokenInvalid your token isn't valid for any user.
+     * @apiErrorExample TokenInvalid:
+     * HTTP/1.1 403 FORBIDDEN
+     * {
+     * "errorCode": 403,
+     * "errorMessage": "Token is invalid",
+     * "responseObject": null
+     * }
+     */
     @PostMapping("/auth/info")
     @ResponseBody
     public ApiResponse getUserInfo() {
-        //todo add apidoc
         return new ApiResponse(player.getUser().orElse(null));
     }
 
