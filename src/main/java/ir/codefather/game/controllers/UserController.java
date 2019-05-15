@@ -2,6 +2,7 @@ package ir.codefather.game.controllers;
 
 import ir.codefather.game.ApiResponse;
 import ir.codefather.game.controllers.transfer_objects.UserRegisterDTO;
+import ir.codefather.game.helpers.Player;
 import ir.codefather.game.helpers.SecurityHelper;
 import ir.codefather.game.helpers.Trans;
 import ir.codefather.game.models.User;
@@ -23,6 +24,10 @@ public class UserController {
 
     @Autowired
     UserRepo userRepo;
+
+
+    @Autowired
+    Player player;
 
     /**
      * @api {post} /user/login   Login
@@ -119,6 +124,44 @@ public class UserController {
         return new ApiResponse(user);
     }
 
+
+    /**
+     * @api {post} /user/auth/info   Get user info
+     * @apiName User info
+     * @apiGroup User
+     * @apiParam {String}  Token token of specific user.
+     * @apiSuccess {User} responseObject User full info.
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     * "errorCode": null,
+     * "errorMessage": null,
+     * "responseObject": {
+     * "id": 3,
+     * "username": "parsa",
+     * "password": "7C222FB2927D828AF22F592134E8932480637C0D",
+     * "token": "6b71215d-daea-4448-87d9-b9fbc1f8d843",
+     * "invitedBy": 0,
+     * "device": null,
+     * "phoneNumber": null,
+     * "gender": null,
+     * "createdAt": null
+     * }
+     * }
+     * @apiError TokenInvalid your token isn't valid for any user.
+     * @apiErrorExample TokenInvalid:
+     * HTTP/1.1 403 FORBIDDEN
+     * {
+     * "errorCode": 403,
+     * "errorMessage": "Token is invalid",
+     * "responseObject": null
+     * }
+     */
+    @PostMapping("/auth/info")
+    @ResponseBody
+    public ApiResponse getUserInfo() {
+        return new ApiResponse(player.getUser().orElse(null));
+    }
 
     /**
      * Check user name already exists
